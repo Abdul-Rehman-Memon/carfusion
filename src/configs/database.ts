@@ -8,7 +8,8 @@ export const database: TypeOrmModuleOptions = {
   username: 'root',
   password: '',
   database: 'carfusion',
-  //   entities: [__dirname + './../**/*.entity{.ts,.js}'],
+  entities: [__dirname + '/../models/**/*.entity{.ts,.js}'],
+  // ''
   synchronize: true,
   logging: true,
 };
