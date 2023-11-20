@@ -5,6 +5,7 @@ import {
   CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 
 @Entity({ name: 'users' })
@@ -27,6 +28,12 @@ export class UsersEntity {
   @Column({ type: 'varchar', nullable: false })
   password: string;
 
+  @Column({ type: 'longtext', nullable: true })
+  token: string;
+
   @CreateDateColumn()
   createdAt: string;
+
+  @UpdateDateColumn()
+  updatedAt: string;
 }

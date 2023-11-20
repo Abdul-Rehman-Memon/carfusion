@@ -6,12 +6,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { database } from './configs/database';
 import { AuthModule } from './modules/auth/auth.module';
 import { AuthController } from './nest/modules/auth/auth.controller';
+import { ProductModule } from './modules/product/product.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
     TypeOrmModule.forRootAsync(database),
     AuthModule,
+    ProductModule,
   ],
   controllers: [AppController, AuthController],
   providers: [AppService],

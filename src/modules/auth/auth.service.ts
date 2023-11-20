@@ -3,11 +3,11 @@ import { ILogin, Isignup } from './auth.dto';
 import * as bcrypt from 'bcrypt';
 import { roundPasswordLength } from 'src/shared/files/constant';
 import { ValidateService } from 'src/shared/services';
-import { error } from 'console';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UsersEntity } from 'src/models';
 import { Repository } from 'typeorm';
 import * as Exception from '@nestjs/common/exceptions';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
@@ -16,6 +16,7 @@ export class AuthService {
   constructor(
     @InjectRepository(UsersEntity) private userRepo: Repository<UsersEntity>,
     private validateService: ValidateService,
+    private jwt: JwtService,
   ) {}
 
   async signup(payload: Isignup) {
@@ -39,14 +40,19 @@ export class AuthService {
         );
       }
     }
+
     payload.password = await bcrypt.hash(payload.password, roundPasswordLength);
 
     const response = await this.userRepo.save(payload);
 
-    return response;
+    return {
+      token: response.token,
+    };
   }
 
   login(payload: ILogin) {
     return 'hello world';
   }
+
+  createToken(payload: ILogin) {}
 }

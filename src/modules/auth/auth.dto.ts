@@ -3,6 +3,7 @@ import {
   IsNotEmpty,
   IsNumber,
   IsString,
+  Matches,
   MinLength,
 } from 'class-validator';
 
@@ -25,7 +26,7 @@ export class Isignup {
 
   @IsString()
   @IsNotEmpty()
-  @MinLength(13)
+  @MinLength(12)
   phone: string;
 }
 
