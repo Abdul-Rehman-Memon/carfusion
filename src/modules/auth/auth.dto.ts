@@ -2,6 +2,7 @@ import {
   IsEmail,
   IsNotEmpty,
   IsNumber,
+  IsOptional,
   IsString,
   Matches,
   MinLength,
@@ -28,6 +29,11 @@ export class Isignup {
   @IsNotEmpty()
   @MinLength(12)
   phone: string;
+
+  @IsString()
+  @IsOptional()
+  @MinLength(12)
+  token: string;
 }
 
 export class ILogin {
@@ -38,4 +44,27 @@ export class ILogin {
   @IsString()
   @IsNotEmpty()
   password: string;
+}
+
+export class authResponse {
+  @IsString()
+  @IsNotEmpty()
+  token: string;
+
+  @IsEmail()
+  @IsNotEmpty()
+  email: string;
+
+  @IsString()
+  @IsNotEmpty()
+  firstName: string;
+
+  @IsString()
+  @IsNotEmpty()
+  lastName: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @MinLength(12)
+  phone: string;
 }

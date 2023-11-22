@@ -4,9 +4,13 @@ import { AuthController } from './auth.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersEntity } from 'src/models';
 import { ValidateService } from 'src/shared/services';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([UsersEntity])],
+  imports: [
+    TypeOrmModule.forFeature([UsersEntity]),
+    JwtModule.register({ secret: 'hard!to-guess_secret' }),
+  ],
   providers: [AuthService, ValidateService],
   controllers: [AuthController],
 })

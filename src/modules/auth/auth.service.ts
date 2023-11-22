@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { ILogin, Isignup } from './auth.dto';
+import { ILogin, Isignup, authResponse } from './auth.dto';
 import * as bcrypt from 'bcrypt';
 import { roundPasswordLength } from 'src/shared/files/constant';
 import { ValidateService } from 'src/shared/services';
@@ -16,7 +16,7 @@ export class AuthService {
   constructor(
     @InjectRepository(UsersEntity) private userRepo: Repository<UsersEntity>,
     private validateService: ValidateService,
-    private jwt: JwtService,
+    private readonly jwtService: JwtService,
   ) {}
 
   async signup(payload: Isignup) {
@@ -43,16 +43,61 @@ export class AuthService {
 
     payload.password = await bcrypt.hash(payload.password, roundPasswordLength);
 
+    const token = await this.createToken({
+      email: payload.email,
+      phone: payload.phone,
+      firstName: payload.firstName,
+      lastName: payload.lastName,
+      password: payload.password,
+    });
+
+    payload.token = token;
+
     const response = await this.userRepo.save(payload);
 
-    return {
+    const data: authResponse = {
       token: response.token,
+      email: response.email,
+      firstName: response.firstName,
+      lastName: response.lastName,
+      phone: response.phone,
     };
+
+    return data;
   }
 
-  login(payload: ILogin) {
-    return 'hello world';
+  async login(payload: ILogin) {
+    const isUser = await this.userRepo.findOne({
+      where: {
+        email: payload.email,
+      },
+    });
+
+    if (!isUser) {
+      throw new Exception.NotFoundException('This email is not registered.');
+    }
+
+    const isPassword = await bcrypt.compare(payload.password, isUser.password);
+
+    if (!isPassword) {
+      throw new Exception.BadRequestException(
+        'User name or password is incorrect',
+      );
+    }
+
+    const data: authResponse = {
+      token: isUser.token,
+      email: isUser.email,
+      firstName: isUser.firstName,
+      lastName: isUser.lastName,
+      phone: isUser.phone,
+    };
+
+    return data;
   }
 
-  createToken(payload: ILogin) {}
+  async createToken(payload: any) {
+    const token = await this.jwtService.signAsync(payload);
+    return token;
+  }
 }
