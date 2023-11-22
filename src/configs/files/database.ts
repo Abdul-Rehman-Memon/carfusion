@@ -26,12 +26,3 @@ export const database: TypeOrmModuleAsyncOptions = {
     return config;
   },
 };
-
-// database
-//   .initialize()
-//   .then(() => {
-//     console.log('Database connected');
-//   })
-//   .catch((err) => {
-//     console.error('Error during Data Source initialization', err);
-//   });
