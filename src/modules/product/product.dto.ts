@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 import {
   Column,
   CreateDateColumn,
@@ -9,23 +9,43 @@ import {
 export class addProductsDto {
   @IsString()
   @IsNotEmpty()
-  brandName: number;
+  name: number;
 
   @IsString()
   @IsNotEmpty()
-  name: string;
+  email: string;
 
   @IsString()
   @IsNotEmpty()
-  amount: string;
+  phone: string;
 
   @IsString()
   @IsNotEmpty()
-  type: string;
+  year: string;
 
   @IsString()
   @IsNotEmpty()
-  category: string;
+  brandName: string;
+
+  @IsString()
+  @IsNotEmpty()
+  carType: string;
+
+  @IsString()
+  @IsNotEmpty()
+  mileage: string;
+
+  @IsString()
+  @IsNotEmpty()
+  exterior: string;
+
+  @IsString()
+  @IsNotEmpty()
+  interior: string;
+
+  @IsString()
+  @IsNotEmpty()
+  accidented: string;
 
   @CreateDateColumn()
   createdAt: string;
@@ -35,26 +55,25 @@ export class addProductsDto {
 }
 
 export class getProductsDto {
-  @IsNumber()
-  startDate: number;
-
-  @IsNumber()
-  endDate: number;
+  @IsString()
+  @IsOptional()
+  carType: string;
 
   @IsString()
-  category: string;
+  @IsOptional()
+  modelYear: string;
 
   @IsString()
+  @IsOptional()
   brandName: string;
 
-  @IsString()
-  type: string;
+  @IsNumber()
+  @IsOptional()
+  type: number;
 
   @IsNumber()
-  initialRange: number;
-
-  @IsNumber()
-  endRange: number;
+  @IsOptional()
+  price: number;
 }
 
 export class getProductbyIdDto {

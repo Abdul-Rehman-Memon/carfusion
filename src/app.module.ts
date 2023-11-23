@@ -7,6 +7,7 @@ import { database } from './configs/files/database';
 import { AuthModule } from './modules/auth/auth.module';
 import { AuthController } from './nest/modules/auth/auth.controller';
 import { ProductModule } from './modules/product/product.module';
+import { TestimonialModule } from './modules/testimonial/testimonial.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { ProductModule } from './modules/product/product.module';
     TypeOrmModule.forRootAsync(database),
     AuthModule,
     ProductModule,
+    TestimonialModule,
   ],
   controllers: [AppController, AuthController],
   providers: [AppService],
