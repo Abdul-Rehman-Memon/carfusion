@@ -17,7 +17,7 @@ export const database: TypeOrmModuleAsyncOptions = {
       username: 'root',
       password: '',
       database: 'carfusion',
-      entities: [__dirname + '/../models/**/*.entity{.ts,.js}'],
+      entities: [__dirname + './../../models/**/*.entity{.ts,.js}'],
       // ''
       synchronize: true,
       logging: true,

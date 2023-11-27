@@ -1,6 +1,7 @@
 import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { CreateDateColumn } from 'typeorm';
 
-export class IcreateTestomonial {
+export class IcreateTestomonialDto {
   @IsString()
   @IsNotEmpty()
   name: string;
@@ -8,9 +9,12 @@ export class IcreateTestomonial {
   @IsString()
   @IsNotEmpty()
   testimonial: string;
+
+  @CreateDateColumn()
+  createdAt: Date;
 }
 
-export class IgetTestomonial {
+export class IgetTestomonialDto {
   @IsString()
   @IsOptional()
   name: string;

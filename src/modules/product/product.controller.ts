@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Query,
+} from '@nestjs/common';
 import {
   addProductsDto,
   getProductbyIdDto,
@@ -16,12 +24,18 @@ export class ProductController {
   }
 
   @Get('/')
-  async getProducts(@Body() payload: getProductsDto) {
+  async getProducts(@Query() payload: getProductsDto) {
     return await this.productService.getProducts(payload);
   }
 
   @Get('/:id')
   async getProductsbyId(@Param() payload: getProductbyIdDto) {
-    return await this.productService.getProductsbyId(payload);
+    await this.productService.getProductsbyId(payload);
+    return payload;
+  }
+
+  @Delete()
+  deleteProduct(@Query() payload: { id: number }) {
+    return this.productService.deleteProduct(payload);
   }
 }

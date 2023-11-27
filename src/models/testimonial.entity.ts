@@ -7,7 +7,7 @@ import {
 
 @Entity('testimonial')
 export class TestimonialEntity {
-  @PrimaryGeneratedColumn('rowid')
+  @PrimaryGeneratedColumn('increment')
   id: number;
 
   @Column({ type: 'varchar' })

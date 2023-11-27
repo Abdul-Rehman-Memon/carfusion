@@ -8,6 +8,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { AuthController } from './nest/modules/auth/auth.controller';
 import { ProductModule } from './modules/product/product.module';
 import { TestimonialModule } from './modules/testimonial/testimonial.module';
+import { BlogModule } from './modules/blog/blog.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { TestimonialModule } from './modules/testimonial/testimonial.module';
     AuthModule,
     ProductModule,
     TestimonialModule,
+    BlogModule,
   ],
   controllers: [AppController, AuthController],
   providers: [AppService],

@@ -77,7 +77,7 @@ export class getProductsDto {
 }
 
 export class getProductbyIdDto {
-  @IsNumber()
+  @IsString()
   @IsNotEmpty()
-  id: number;
+  id: string;
 }

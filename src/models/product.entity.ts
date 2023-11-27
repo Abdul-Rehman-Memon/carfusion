@@ -8,7 +8,7 @@ import {
 
 @Entity({ name: 'product' })
 export class ProductEntity {
-  @PrimaryGeneratedColumn('rowid')
+  @PrimaryGeneratedColumn('increment')
   id: number;
 
   @Column({ type: 'varchar' })

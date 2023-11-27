@@ -31,5 +31,15 @@ export class ProductService {
     });
   }
 
-  getProductsbyId(payload: getProductbyIdDto) {}
+  getProductsbyId(payload: getProductbyIdDto) {
+    return this.productRepo.find({
+      where: {
+        id: +payload.id,
+      },
+    });
+  }
+
+  async deleteProduct(payload: { id: number }) {
+    return await this.productRepo.delete(payload);
+  }
 }
