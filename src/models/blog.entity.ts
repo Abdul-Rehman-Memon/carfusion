@@ -18,6 +18,11 @@ export class BlogEntity {
   name: string;
 
   @Column({
+    type: 'varchar',
+  })
+  images: string;
+
+  @Column({
     nullable: false,
     type: 'longtext',
   })

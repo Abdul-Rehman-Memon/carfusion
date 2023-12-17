@@ -2,9 +2,12 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { BiddingEntity } from './bidding.entity';
 
 @Entity({ name: 'product' })
 export class ProductEntity {
@@ -36,6 +39,9 @@ export class ProductEntity {
   price: string;
 
   @Column({ type: 'varchar' })
+  images: string;
+
+  @Column({ type: 'varchar' })
   mileage: string;
 
   @Column({ type: 'varchar' })
@@ -48,6 +54,9 @@ export class ProductEntity {
   accidented: string;
 
   @Column({ type: 'varchar' })
+  productId: string;
+
+  @Column({ type: 'varchar' })
   type: string;
 
   @CreateDateColumn()
@@ -55,4 +64,7 @@ export class ProductEntity {
 
   @UpdateDateColumn()
   updatedAt: string;
+
+  @ManyToOne(() => BiddingEntity, (data) => data.productEntity)
+  biddingEntity: BiddingEntity;
 }

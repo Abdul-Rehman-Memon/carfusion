@@ -13,6 +13,9 @@ export class TestimonialEntity {
   @Column({ type: 'varchar' })
   name: string;
 
+  @Column({ type: 'varchar' })
+  images: string;
+
   @Column({ type: 'longtext' })
   testimonial: string;
 

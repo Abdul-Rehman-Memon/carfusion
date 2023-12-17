@@ -9,6 +9,7 @@ import { AuthController } from './nest/modules/auth/auth.controller';
 import { ProductModule } from './modules/product/product.module';
 import { TestimonialModule } from './modules/testimonial/testimonial.module';
 import { BlogModule } from './modules/blog/blog.module';
+import { MulterModule } from '@nestjs/platform-express';
 
 @Module({
   imports: [
@@ -18,6 +19,9 @@ import { BlogModule } from './modules/blog/blog.module';
     ProductModule,
     TestimonialModule,
     BlogModule,
+    // MulterModule.register({
+    //   dest:'./uploads'
+    // })
   ],
   controllers: [AppController, AuthController],
   providers: [AppService],

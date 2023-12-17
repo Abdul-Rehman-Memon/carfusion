@@ -10,6 +10,10 @@ export class ICreateBlog {
   blog: string;
 
   @IsString()
+  @IsOptional()
+  images:string
+  
+  @IsString()
   @IsNotEmpty()
   title: string;
 }

@@ -1,4 +1,10 @@
-import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import {
+  IsEmail,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 import {
   Column,
   CreateDateColumn,
@@ -10,14 +16,6 @@ export class addProductsDto {
   @IsString()
   @IsNotEmpty()
   name: number;
-
-  @IsString()
-  @IsNotEmpty()
-  email: string;
-
-  @IsString()
-  @IsNotEmpty()
-  phone: string;
 
   @IsString()
   @IsNotEmpty()
@@ -52,6 +50,9 @@ export class addProductsDto {
 
   @UpdateDateColumn()
   updatedAt: string;
+  @IsString()
+  @IsOptional()
+  images: string;
 }
 
 export class getProductsDto {
@@ -80,4 +81,26 @@ export class getProductbyIdDto {
   @IsString()
   @IsNotEmpty()
   id: string;
+}
+
+export class createBidDto {
+  @IsString()
+  @IsNotEmpty()
+  name: string;
+
+  @IsEmail()
+  @IsNotEmpty()
+  email: string;
+
+  @IsString()
+  @IsNotEmpty()
+  price: string;
+
+  @IsString()
+  @IsNotEmpty()
+  message: string;
+
+  @IsNumber()
+  @IsOptional()
+  productId: number;
 }

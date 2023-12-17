@@ -7,6 +7,10 @@ export class IcreateTestomonialDto {
   name: string;
 
   @IsString()
+  @IsOptional()
+  images:string
+
+  @IsString()
   @IsNotEmpty()
   testimonial: string;
 
